@@ -13,8 +13,15 @@ export function Input({name, label, ...rest}: InputProps){
                 name={name} 
                 id={name}
                 bgColor='gray.900'
-                variant='flushed'
-                focusBorderColor='pink.500'
+                borderColor='transparent'
+                variant='outline'
+                _focus={
+                   {
+                    bg:'gray.50',
+                    color:'gray.900',
+                    borderColor:'pink.500'
+                    }
+                }
                 size='lg'
                 _hover={{
                 bgColor:'gray.900'

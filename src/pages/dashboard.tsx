@@ -68,13 +68,13 @@ export default function DashBoard(){
             <Header />
             <Flex
             w='100%'
-            maxWidth={1480}
+            maxWidth={1280}
             my='6'
             mx='auto'
             px='auto'
             >
                 <SideBar />
-                <SimpleGrid flex='1' gap='4' minChildWidth='320px' align='flex-start'>
+                <SimpleGrid flex='1' gap='4' minChildWidth='320px' align='flex-start' >
                     <Box borderRadius={8} bgColor='gray.800' p='8' pb='4'>
                         <Text>Inscritos da Semana</Text>
                         <Chart options = { options } series={series} type="area" height={160} />

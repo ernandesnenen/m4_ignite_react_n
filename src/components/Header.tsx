@@ -6,11 +6,11 @@ export function Header():JSX.Element{
         <Flex 
         as='header'
         w='100%'
-        maxWidth={1480}
+        maxWidth={1280}
         h='20'
         mx='auto'
         mt='4'
-        px='6'
+        px='8'
         align='center'
         >
             <Text 

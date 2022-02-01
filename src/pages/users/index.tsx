@@ -8,7 +8,7 @@ export default function UserList(): JSX.Element {
  return (
      <Box>
          <Header />
-         <Flex w='100%' my='6' maxWidth={1280} mx='auto' px='auto'>
+         <Flex w='100%' my='6' maxWidth={1280} mx='auto' px='6'>
              <SideBar />
              <Box flex='1' borderRadius={8} bg='gray.800' p='8'>
                  <Flex mb='8' justify='space-between' align='center'>

@@ -76,13 +76,13 @@ export default function DashBoard(){
             >
                 <SideBar />
                 <SimpleGrid flex='1' gap='4' minChildWidth='320px' align='flex-start' >
-                    <Box borderRadius={8} bgColor='gray.800' p='8' pb='4'>
+                    <Box borderRadius={8} bgColor='gray.800' p={['6', '8']} pb='4'>
                         <Text>Inscritos da Semana</Text>
-                        <Chart options = { options } series={series} type="area" height={160} />
+                        <Chart options={options} series={series} type="area" height={160} />
                     </Box>
-                    <Box borderRadius={8} bgColor='gray.800' p='8'>
+                    <Box borderRadius={8} bgColor='gray.800' p={['6', '8']}>
                         <Text>Taxa de Abertura</Text>
-                        <Chart options = { options } series={series} type="area" height={160} />
+                        <Chart options={options} series={series} type="area" height={160} />
                     </Box>
                 </SimpleGrid>
 

@@ -1,10 +1,14 @@
-import {Box, Button, Checkbox, Flex, Heading, Icon, Table, Td, Th, Thead, Tr, Text} from '@chakra-ui/react'
+import {Box, Button, Checkbox, Flex, Heading, Icon, Table, Td, Th, Thead, Tr, Text, useBreakpointValue} from '@chakra-ui/react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import {Header} from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import {SideBar} from '../../components/Sidebar'
 
 export default function UserList(): JSX.Element {
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        lg: true,
+    })
  return (
      <Box>
          <Header />
@@ -21,15 +25,15 @@ export default function UserList(): JSX.Element {
                  <Table colorScheme='whiteAlpha'>
                      <Thead>
                          <Tr>
-                            <Th px='6' color='gray.300' w='8'>
+                            <Th px={['4','4','6']} color='gray.300' w='8'>
                                  <Checkbox  colorScheme='pink'/>
                             </Th>
                             <Th>User</Th>
-                            <Th>Date of Create</Th>
+                           {isWideVersion && <Th>Date of Create</Th>}
                             <Th w='8'></Th>
                          </Tr> 
                          <Tr>
-                             <Td>
+                             <Td px={['4','4','6']}>
                                 <Checkbox  colorScheme='pink'/>
                              </Td>
                              <Td>
@@ -38,16 +42,18 @@ export default function UserList(): JSX.Element {
                                     <Text fontSize='sm' color='gray.300'>nenenernan@gmail.com</Text>
                                 </Box>                                 
                              </Td>
-                             <Td>04 de abril, 2022</Td>
+                             {isWideVersion && <Td>04 de abril, 2022</Td>}
+                             {isWideVersion &&
                              <Td>
                              <Button as='a' size='sm' fontSize='sm' colorScheme='purple' leftIcon={<Icon as={RiPencilLine} />}>
                                 Edit
                              </Button>
                              </Td>
+                             }
                          </Tr>
                          {/* ------------------------------------------------------------------------- */}
                          <Tr>
-                             <Td>
+                             <Td px={['4','4','6']}>
                                 <Checkbox  colorScheme='pink'/>
                              </Td>
                              <Td>
@@ -56,12 +62,14 @@ export default function UserList(): JSX.Element {
                                     <Text fontSize='sm' color='gray.300'>nenenernan@gmail.com</Text>
                                 </Box>                                 
                              </Td>
-                             <Td>04 de abril, 2022</Td>
+                            {isWideVersion && <Td>04 de abril, 2022</Td>}
+                            {isWideVersion &&
                              <Td>
                              <Button as='a' size='sm' fontSize='sm' colorScheme='purple' leftIcon={<Icon as={RiPencilLine} />}>
                                 Edit
                              </Button>
                              </Td>
+                             }
                          </Tr>
                      </Thead>
                  </Table>

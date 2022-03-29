@@ -16,7 +16,7 @@ if(isCurrent){
         colorScheme='pink'
         disabled
         _disabled={{
-            bg:'pink',
+            bg:'pink.700',
             cursor:'default'   
         }}
         >

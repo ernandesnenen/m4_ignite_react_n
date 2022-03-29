@@ -15,6 +15,7 @@ export function Pagination({
     onChangePage
 
 }:PaginationProps):JSX.Element{
+    {console.log('>>', totalCountOfRegisters)}
     const lastPage = Math.floor(totalCountOfRegisters/ registersPerPage)
     const siblingsCount = 1
     {console.log('xx',lastPage)}
@@ -52,24 +53,24 @@ export function Pagination({
 
                {currentPage >(1+ siblingsCount) &&(
                    <>
-                   <ButtonPagination   num={1} /> 
+                   <ButtonPagination onPageChange={onChangePage}   num={1} /> 
                    {currentPage >(2 + siblingsCount ) && <Text color='gray.300' textAlign='center' w='8'>...</Text>}
                    </>
                )}
                 {previusPages.length > 0 && previusPages.map( page =>{
-                    return  <ButtonPagination  key={page} num={page} />
+                    return  <ButtonPagination onPageChange={onChangePage}  key={page} num={page} />
                 })}
 
-                <ButtonPagination num={currentPage} isCurrent />
+                <ButtonPagination onPageChange={onChangePage} num={currentPage} isCurrent />
 
                 {nextPages.length > 0 && nextPages.map( page =>{
-                    return  <ButtonPagination  key={page} num={page} />
+                    return  <ButtonPagination onPageChange={onChangePage}  key={page} num={page} />
                 })}
 
                 {( currentPage + siblingsCount)<lastPage &&(
                     <>
                      {(currentPage + 1 + siblingsCount )< lastPage && <Text color='gray.300' textAlign='center' w='8'>...</Text>}
-                     <ButtonPagination   num={lastPage} />  
+                     <ButtonPagination onPageChange={onChangePage}  num={lastPage} />  
                     </>
 
                 ) }

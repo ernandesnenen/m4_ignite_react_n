@@ -48,7 +48,7 @@ export function makeServer(){
 
                 return new Response(
                     200,
-                    {'ex-total-cont': String(total)},
+                    {'x-total-count': String(total)},
                     {users}
                 )
                

@@ -15,10 +15,10 @@ export function Pagination({
     onChangePage
 
 }:PaginationProps):JSX.Element{
-    {console.log('>>', totalCountOfRegisters)}
-    const lastPage = Math.floor(totalCountOfRegisters/ registersPerPage)
+   
+    const lastPage = Math.ceil(totalCountOfRegisters/ registersPerPage)
     const siblingsCount = 1
-    {console.log('xx',lastPage)}
+  
     
     function generatePagesArray(from:number, to:number){
         return [...new Array(to - from)]

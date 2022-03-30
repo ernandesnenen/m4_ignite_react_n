@@ -4,10 +4,15 @@ import { SideBar } from "../../components/Sidebar";
 import { Input } from "../../components/Form/Input";
 import Link from "next/link";
 
+import { useMutation } from "react-query";
+
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import {yupResolver} from '@hookform/resolvers/yup'
+import { api } from "../../services/api";
+import { queryClient } from "../../services/queryClient";
+import { useRouter } from "next/router";
 
 type CreateUserProps = {
   name:string,
@@ -27,15 +32,32 @@ const createUserFormSchema = yup.object().shape({
 
 
 export default function CreateUser():JSX.Element {
+    const router = useRouter()
+
+    const createUser = useMutation(async (user:CreateUserProps)=>{
+        const res = await api.post('/users', {
+            user:{
+                ...user,
+                created_at: new Date()
+            }
+        })
+        return res.data.user
+    },{
+        onSuccess: ()=>{
+            queryClient.invalidateQueries('users')
+        }
+    })
+   
     const { register, handleSubmit, formState }= useForm({
         resolver:yupResolver(createUserFormSchema)
       })
     
       const handlecreateUser: SubmitHandler<CreateUserProps> = async (data) => {
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        console.log(data);
+        await createUser.mutateAsync(data)
+        router.push('/users')
       }
     
+      
 
 
     return(

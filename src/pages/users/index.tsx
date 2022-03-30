@@ -1,19 +1,37 @@
-import {Box, Button, Checkbox, Flex, Heading, Icon, Table, Td, Th, Thead, Tr, Text, useBreakpointValue, Spinner, Tbody} from '@chakra-ui/react'
-import Link from 'next/link'
+import {Box,
+     Button,
+      Checkbox,
+       Flex, Heading,
+        Icon,
+         Table,
+          Td,
+           Th,
+            Thead,
+             Tr,
+              Text,
+               useBreakpointValue,
+                Spinner,
+                 Tbody,
+                 Link as ChakraLink
+                } from '@chakra-ui/react'
+import  Link from 'next/link'
 import { useState } from 'react'
 
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import {Header} from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import {SideBar} from '../../components/Sidebar'
+import { api } from '../../services/api'
+
 
 import { useUsers } from '../../services/hooks/useUsers'
+import { queryClient } from '../../services/queryClient'
 
 
 export default function UserList(): JSX.Element {
     const [page , setPage] = useState(1)
     const {data, isLoading, isFetching, error} = useUsers(page)
-
+   
 
     const isWideVersion = useBreakpointValue({
         base: false,
@@ -21,7 +39,12 @@ export default function UserList(): JSX.Element {
     })
 
 
-{console.log(page)}
+ async function handlePrefetchUser(userId){
+   await queryClient.prefetchQuery(['user', userId], async() => {
+    const response = await api.get(`users/${userId}`)
+    return response.data
+   },{staleTime: 1000 * 60 * 10})
+ }
 
  return (
      <Box>
@@ -72,7 +95,12 @@ export default function UserList(): JSX.Element {
                                 </Td>
                                 <Td>
                                     <Box>
-                                        <Text fontWeight='bold'>{user.name}</Text>
+                                        <ChakraLink 
+                                        color='purple.400'
+                                        onMouseEnter={()=> handlePrefetchUser(user.id)}
+                                        >
+                                            <Text fontWeight='bold'>{user.name}</Text>
+                                        </ChakraLink>
                                         <Text fontSize='sm' color='gray.300'>{user.email}</Text>
                                     </Box>                                 
                                 </Td>
